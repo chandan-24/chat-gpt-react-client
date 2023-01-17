@@ -29,8 +29,14 @@ function App() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+  <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Write Something inside promt
+        </p>
+        <hr></hr>
+        <form onSubmit={handleSubmit}>
         <label>
           Prompt:
           <input type="text" value={prompt} onChange={e => setPrompt(e.target.value)} />
@@ -40,7 +46,9 @@ function App() {
       <div>
         {response}
       </div>
+      </header>
     </div>
+
   );
 }
 
