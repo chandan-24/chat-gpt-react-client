@@ -3,6 +3,8 @@ import './App.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const baseURL = "https://chatbot.deadlyai.com";
+
 function App() {
   const [prompt, setPrompt] = useState('');
   const [response, setResponse] = useState('');
@@ -12,12 +14,12 @@ function App() {
     event.preventDefault();
     try {
       // Send POST request to Flask server with prompt
-      const res = await axios.post('/chat', { prompt });
+      const res = await axios.post(`${baseURL}/chat`, { prompt });
       setTaskId(res.data.task_id);
 
       // Poll for result every 2 seconds
       const intervalId = setInterval(async () => {
-        const result = await axios.get(`/result/${taskId}`);
+        const result = await axios.get(`${baseURL}/result/${taskId}`);
         if (result.data.data) {
           setResponse(result.data.data);
           clearInterval(intervalId);
