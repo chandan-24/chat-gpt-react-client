@@ -31,10 +31,7 @@ You can customize the look and feel of the client by editing the React component
 
 # Deployment
 You can easily deploy the client to a static hosting service such as GitHub Pages or Netlify by running the following command:
-
-    ```
-    yarn build
-    ```
+`yarn build`
 This will create a production-ready build of the client in the build directory, which can be uploaded to your hosting service.
 
 # Limitations
