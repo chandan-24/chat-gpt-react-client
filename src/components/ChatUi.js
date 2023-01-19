@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import Bot from "../images/bot.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-const baseURL = "https://chatbot.deadlyai.com";
-
 const ChatUi = () => {
-  const userMsg = ["me", "you", "hello"];
-  const botMsg = ["nice", "great", "hi"];
-  const [bot, setBot] = useState([]);
-
-  const [prompt, setPrompt] = useState("");
-  const [response, setResponse] = useState("");
-  const [taskId, setTaskId] = useState("");
-
   // value of local storage
   const [userMsgArr, setUserMsgArr] = useLocalStorage("userMsgArr", []);
   const [botMsgArr, setBotMsgArr] = useLocalStorage("botMsgArr", []);
@@ -29,12 +19,11 @@ const ChatUi = () => {
     formik.values.text = "";
 
     axios
-      .post(`${baseURL}/chat`, { newPrompt })
+      .post(`${process.env.REACT_APP_BASE_URL}/chat`, { prompt : newPrompt })
       .then((res) => {
         axios
-          .get(`${baseURL}/result/${res.data.task_id}`)
+          .get(`${process.env.REACT_APP_BASE_URL}/result/${res.data.task_id}`)
           .then((res) => {
-            setResponse(res?.data?.data);
             setBotMsgArr([...botMsgArr, res?.data?.data]);
           })
           .catch((err) => {
