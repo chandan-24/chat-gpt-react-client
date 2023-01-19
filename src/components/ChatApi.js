@@ -8,25 +8,25 @@ function Chatbot() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (taskId) {
-      setIsLoading(true);
-      const intervalId = setInterval(async () => {
-        try {
-          const result = await axios.get(`/result/${taskId}`);
-          if (result.data.data) {
-            setResponse(result.data.data);
-            clearInterval(intervalId);
-            setIsLoading(false);
-          }
-        } catch (error) {
-          setError(error);
-          setIsLoading(false);
-          clearInterval(intervalId);
-        }
-      }, 2000);
-    }
-  }, [taskId]);
+  // useEffect(() => {
+  //   if (taskId) {
+  //     setIsLoading(true);
+  //     const intervalId = setInterval(async () => {
+  //       try {
+  //         const result = await axios.get(`/result/${taskId}`);
+  //         if (result.data.data) {
+  //           setResponse(result.data.data);
+  //           clearInterval(intervalId);
+  //           setIsLoading(false);
+  //         }
+  //       } catch (error) {
+  //         setError(error);
+  //         setIsLoading(false);
+  //         clearInterval(intervalId);
+  //       }
+  //     }, 2000);
+  //   }
+  // }, [taskId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
