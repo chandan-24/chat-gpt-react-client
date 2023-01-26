@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import ChatUi from "./components/ChatUi";
 import Navbar from "./components/Navbar";
-import Profile from "./components/Profile/Profile";
+// import Profile from "./components/Profile/Profile";
 
 function App() {
   return (
