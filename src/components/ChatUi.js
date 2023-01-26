@@ -111,7 +111,7 @@ const ChatUi = () => {
               <div className="flex items-center">
                 <div className="flex flex-col space-y-2 text-base max-w-xs mx-2 order-2 items-start">
                   <span className="text-2xl font-bold">
-                    This is Kopa shamsu!
+                    I am from Vegan Coach. How can I help you?
                   </span>
                 </div>
                 <img
@@ -241,7 +241,7 @@ const ChatUi = () => {
           />
         </div>
         <a
-          href="#"
+          href="https://myvegancoach.it"
           className="bg-[#3E8A5F] text-white rounded-md py-3 relative block w-full"
         >
           Go to my vegan coach
