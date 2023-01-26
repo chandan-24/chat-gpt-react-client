@@ -111,7 +111,7 @@ const ChatUi = () => {
               <div className="flex items-center">
                 <div className="flex flex-col space-y-2 text-base max-w-xs mx-2 order-2 items-start">
                   <span className="text-2xl font-bold">
-                    I am from Vegan Coach. How can I help you?
+                    This is Vegan Coach!
                   </span>
                 </div>
                 <img
