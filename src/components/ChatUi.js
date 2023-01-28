@@ -48,10 +48,10 @@ const ChatUi = () => {
     } else {
       // if not image
       axios
-        .post(`${process.env.REACT_APP_BASE_URL}/chat`, { prompt: newPrompt })
+        .post(`${process.env.REACT_APP_BASE_URL}/`, { prompt: newPrompt })
         .then((res) => {
           axios
-            .get(`${process.env.REACT_APP_BASE_URL}/result/${res.data.task_id}`)
+            .get(`${process.env.REACT_APP_BASE_URL}?task_id=${res.data.task_id}`)
             .then((res) => {
               setBotMsgArr([...botMsgArr, res?.data?.data]);
             })
@@ -67,10 +67,10 @@ const ChatUi = () => {
     }
 
     axios
-      .post(`${process.env.REACT_APP_BASE_URL}/chat`, { prompt: newPrompt })
+      .post(`${process.env.REACT_APP_BASE_URL}/`, { prompt: newPrompt })
       .then((res) => {
         axios
-          .get(`${process.env.REACT_APP_BASE_URL}/result/${res.data.task_id}`)
+          .get(`${process.env.REACT_APP_BASE_URL}?task_id=${res.data.task_id}`)
           .then((res) => {
             setBotMsgArr([...botMsgArr, res?.data?.data]);
           })
