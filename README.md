@@ -45,4 +45,4 @@ If you find any bugs or would like to add new features, please feel free to open
 This repository is released under the MIT license. See LICENSE for more details.
 
 Please note that you will need to have an extranal API based on [chat-gpt-celery-flask
-](https://github.com/shamspias/chat-gpt-celery-flask) to use GPT-3 functionality in the client.
+](https://github.com/shamspias/chat-gpt-celery-flask) to use GPT-3 functionality in the client."# chat-gpt-react-django" 

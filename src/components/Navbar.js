@@ -22,7 +22,7 @@ const Navbar = () => {
               </select>
             </div>
             <div className="flex gap-2 items-center">
-              <span>Shams</span>
+              <span>Shamsuddin</span>
               <img
                 className="h-[50px] w-[50px] rounded-full"
                 src={Bot}

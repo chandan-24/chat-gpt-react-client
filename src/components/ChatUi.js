@@ -98,7 +98,7 @@ const ChatUi = () => {
   }, [userMsgArr, botMsgArr]);
 
   return (
-    <section className="bg-body md:py-16 h-[92.3vh] relative">
+    <section className="bg-body md:py-16 h-full relative">
       {/* main chat section */}
       <div className="xl:w-[860px] bg-white mx-auto rounded-xl">
         {/* component */}
@@ -111,7 +111,7 @@ const ChatUi = () => {
               <div className="flex items-center">
                 <div className="flex flex-col space-y-2 text-base max-w-xs mx-2 order-2 items-start">
                   <span className="text-2xl font-bold">
-                    This is Vegan Coach!
+                    This is Kopa shamsu!
                   </span>
                 </div>
                 <img
@@ -231,7 +231,7 @@ const ChatUi = () => {
       </div>
 
       {/* aside section */}
-      <aside className="hidden md:block absolute right-[30rem] bottom-40 h-[300px] w-[264px] bg-white rounded-xl px-2 py-3">
+      {/* <aside className="hidden md:block absolute right-[30rem] bottom-40 h-[300px] w-[264px] bg-white rounded-xl px-2 py-3">
         <div className="pt-4 mb-16">
           <p className="text-2xl">Visit my website</p>
           <img
@@ -241,12 +241,12 @@ const ChatUi = () => {
           />
         </div>
         <a
-          href="https://myvegancoach.it"
+          href="#"
           className="bg-[#3E8A5F] text-white rounded-md py-3 relative block w-full"
         >
           Go to my vegan coach
         </a>
-      </aside>
+      </aside> */}
     </section>
   );
 };

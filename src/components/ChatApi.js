@@ -34,7 +34,7 @@ function Chatbot() {
       setIsLoading(true);
       setError(null);
       setResponse('');
-      const res = await axios.post('/chat', { "prompt":prompt });
+      const res = await axios.post('/chat', { prompt });
       setTaskId(res.data.task_id);
     } catch (error) {
       setError(error);
