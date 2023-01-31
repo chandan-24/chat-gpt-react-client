@@ -5,11 +5,18 @@ import { AiTwotoneAudio } from "react-icons/ai";
 import Bot from "../images/bot.png";
 import website from "../images/cuate.png";
 import useLocalStorage from "../hooks/useLocalStorage";
+import useAuth from "../hooks/useAuth";
 
 const ChatUi = () => {
+  const { user } = useAuth();
+
   // value of local storage
   const [userMsgArr, setUserMsgArr] = useLocalStorage("userMsgArr", []);
   const [botMsgArr, setBotMsgArr] = useLocalStorage("botMsgArr", []);
+  const [accessToken, setAccessToken] = useLocalStorage("accessToken", "");
+  const config = {
+    headers: { Authorization: `Bearer ${accessToken}`},
+  };
 
   const messageRef = useRef();
 
@@ -28,6 +35,7 @@ const ChatUi = () => {
       axios
         .post(`${process.env.REACT_APP_BASE_URL}/image_chat`, { prompt })
         .then((res) => {
+
           axios
             .get(`${process.env.REACT_APP_BASE_URL}/image/${res.data.task_id}`)
             .then((res) => {
@@ -47,42 +55,26 @@ const ChatUi = () => {
         });
     } else {
       // if not image
+
       axios
-        .post(`${process.env.REACT_APP_BASE_URL}/chat`, { prompt: newPrompt })
+        .post(`chatbot/`, { user_input: newPrompt, language: "English" }, config, {withCredentials: true})
         .then((res) => {
+          // getting response
           axios
-            .get(`${process.env.REACT_APP_BASE_URL}/result/${res.data.task_id}`)
+            .get(`chatbot/?task_id=${res.data.task_id}`, config)
             .then((res) => {
               setBotMsgArr([...botMsgArr, res?.data?.data]);
             })
             .catch((err) => {
-              console.log(err.response);
+              console.log(err);
               setBotMsgArr([...botMsgArr, "Please try again"]);
             });
         })
         .catch((err) => {
-          console.log(err.response);
+          console.log(err);
           setBotMsgArr([...botMsgArr, "Please try again"]);
         });
     }
-
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/chat`, { prompt: newPrompt })
-      .then((res) => {
-        axios
-          .get(`${process.env.REACT_APP_BASE_URL}/result/${res.data.task_id}`)
-          .then((res) => {
-            setBotMsgArr([...botMsgArr, res?.data?.data]);
-          })
-          .catch((err) => {
-            console.log(err.response);
-            setBotMsgArr([...botMsgArr, "Please try again"]);
-          });
-      })
-      .catch((err) => {
-        console.log(err.response);
-        setBotMsgArr([...botMsgArr, "Please try again"]);
-      });
   };
   const formik = useFormik({
     initialValues,
@@ -111,7 +103,7 @@ const ChatUi = () => {
               <div className="flex items-center">
                 <div className="flex flex-col space-y-2 text-base max-w-xs mx-2 order-2 items-start">
                   <span className="text-2xl font-bold">
-                    This is Kopa shamsu!
+                    This is {user?.username}
                   </span>
                 </div>
                 <img

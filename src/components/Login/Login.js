@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import { Navigate } from 'react-router-dom';
-import axios from 'axios';
+import { Navigate, useLocation } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
-    const [navigate, setNavigate] = useState(false);
+    const location = useLocation();
+    const destination = location?.state?.from || '/';
+
+    // useCredentials
+    const {user , login} = useAuth();
 
     // formik 
     const initialValues = {
@@ -13,22 +17,17 @@ const Login = () => {
     }
 
     const onSubmit = async values =>{
-        console.log(values);
+        login(values.email, values.password);
+    };
 
-        const {data} = await axios.post('v1/auth/login/', {
-            email : values.email, password : values.password
-        }, {withCredentials : true});
-
-        document.cookie = `${data.refresh}`;
-        axios.defaults.headers.common['Authorization'] =  `Bearer ${data.access}`;
-    }
+    
     const formik = useFormik({
         initialValues,
         onSubmit,
       });
 
-      if(navigate) {
-        return <Navigate to="/"/>
+      if(user?.username) {
+        return <Navigate to={destination}/>
       }
 
   return (
